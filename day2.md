@@ -1,6 +1,6 @@
 ## Vue组件data选项为什么必须是个函数而Vue的根实例则没有此限制？
-
->材料来源自vue官网[https://cn.vuejs.org/v2/guide/components.html#data-%E5%BF%85%E9%A1%BB%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0]
+___
+>[资料源自vue官网](https://cn.vuejs.org/v2/guide/components.html#data-%E5%BF%85%E9%A1%BB%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0)
 
 
 定义一个名为 button-counter 的新组件
@@ -49,4 +49,4 @@ data: function () {
   }
 }
 ```
-如果 Vue 没有这条规则，点击一个按钮就可能会像如下代码一样影响到其它所有实例！
+*如果 Vue 没有这条规则，点击一个按钮就可能会像上述代码一样影响到其它所有实例！*
