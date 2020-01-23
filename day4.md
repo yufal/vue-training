@@ -36,12 +36,12 @@ var Vnode = {
 ```
 上面的代码会分别比较同一层的两个div以及第二层的p和span，但是不会拿div和span作比较。
 
-![借鉴大神一张很形象的图](../img/diff1.png)
+![借鉴大神一张很形象的图](../img/bijiao.png)
 
 4>.diff流程图
 >当数据发生改变时，set方法会让调用Dep.notify通知所有订阅者Watcher，订阅者就会调用patch给真实的DOM打补丁，更新相应的视图。
 
-![diff流程图](../img/diff2.png)
+![diff流程图](../img/flow.png)
 
 + patch
 ```
