@@ -36,12 +36,12 @@ var Vnode = {
 ```
 上面的代码会分别比较同一层的两个div以及第二层的p和span，但是不会拿div和span作比较。
 
-![借鉴大神一张很形象的图](https://user-gold-cdn.xitu.io/2018/5/19/163776ba7bda2d47?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![借鉴大神一张很形象的图](../img/diff1.png)
 
 4>.diff流程图
 >当数据发生改变时，set方法会让调用Dep.notify通知所有订阅者Watcher，订阅者就会调用patch给真实的DOM打补丁，更新相应的视图。
 
-![diff流程图](https://user-gold-cdn.xitu.io/2018/5/19/163777930be304eb?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![diff流程图](../img/diff2.png)
 
 + patch
 ```
@@ -189,13 +189,7 @@ updateChildren (parentElm, oldCh, newCh) {
 -oldCh和vCh各有两个头尾的变量StartIdx和EndIdx，它们的2个变量相互比较，一共有4种比较方式。如果4种比较都没匹配，如果设置了key，就会用key进行比较，在比较的过程中，变量会往中间靠，一旦StartIdx>EndIdx表明oldCh和vCh至少有一个已经遍历完了，就会结束比较。
 ```
 
-![](https://user-gold-cdn.xitu.io/2018/5/19/16378648ea5046c2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
-
-现在分别对oldS、oldE、S、E两两做sameVnode比较，有四种比较方式，当其中两个能匹配上那么真实dom中的相应节点会移到Vnode相应的位置，这句话有点绕，打个比方
-
-如果是oldS和E匹配上了，那么真实dom中的第一个节点会移到最后
-如果是oldE和S匹配上了，那么真实dom中的最后一个节点会移到最前，匹配上的两个指针向中间移动
-如果四种匹配没有一对是成功的，分为两种情况
+现在分别对oldS、oldE、S、E两两做sameVnode比较，有四种比较方式，当其中两个能匹配上那么真实dom中的相应节点会移到Vnode相应的位置，这句话有点绕，打个比方如果是oldS和E匹配上了，那么真实dom中的第一个节点会移到最后如果是oldE和S匹配上了，那么真实dom中的最后一个节点会移到最前，匹配上的两个指针向中间移动如果四种匹配没有一对是成功的，分为两种情况
 
 如果新旧子节点都存在key，那么会根据oldChild的key生成一张hash表，用S的key与hash表做匹配，匹配成功就判断S和匹配节点是否为sameNode，如果是，就在真实dom中将成功的节点移到最前面，否则，将S生成对应的节点插入到dom中对应的oldS位置，oldS和S指针向中间移动。
 如果没有key,则直接将S生成新的节点插入真实DOM（ps：这下可以解释为什么v-for的时候需要设置key了，如果没有key那么就只会做四种匹配，就算指针中间有可复用的节点都不能被复用了）
